@@ -34,6 +34,9 @@ git clone --branch $INPUT_DESTINATION_BASE_BRANCH "https://$API_TOKEN_GITHUB@git
 
 echo "Copying contents to git repo"
 mkdir -p $CLONE_DIR/$INPUT_DESTINATION_FOLDER/
+cd "$CLONE_DIR"
+git pull
+cd ..
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER/"
 cd "$CLONE_DIR"
 ls -l
@@ -45,6 +48,7 @@ if git status | grep -q "Changes to be committed"
 then
   git commit --message "Update from https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
   git remote -v
+  git branch
   echo "Pushing git commit"
   git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
   echo "Creating a pull request"
