@@ -35,7 +35,6 @@ git clone --branch $INPUT_DESTINATION_BASE_BRANCH "https://$API_TOKEN_GITHUB@git
 echo "Copying contents to git repo"
 mkdir -p $CLONE_DIR/$INPUT_DESTINATION_FOLDER/
 cd "$CLONE_DIR"
-git pull
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER/"
 cd "$CLONE_DIR"
 ls -l
@@ -49,7 +48,7 @@ then
   git remote -v
   git branch
   echo "Pushing git commit"
-  git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
+  git push -f -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
   echo "Creating a pull request"
   gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
                -b $INPUT_DESTINATION_HEAD_BRANCH \
