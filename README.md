@@ -1,4 +1,6 @@
 # Action pull request another repository 
+Used @paygoc6/action-pull-request-another-repo@v1.0.1
+Thank you.
 This GitHub Action copies a folder from the current repository to a location in another repository and create a pull request
 
 ## Example Workflow
